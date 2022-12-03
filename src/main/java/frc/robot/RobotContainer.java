@@ -63,11 +63,11 @@ public class RobotContainer {
     final JoystickButton armButton = new JoystickButton(driverController, 6);
     final JoystickButton intakeButton = new JoystickButton(driverController, 7);
     
-    intakeButton.whenPressed(new RunCommand(frc.robot.commands.Intake);
-    outtakeButton.whenPressed(outtake::outtake);
-    armButton.whileHeld(new RunCommand(frc.robot.commands.LiftArm));
-    armButton.whenPressed(new FooCommand(set(0.2)));
-    armButton.whenReleased(new FooCommand(set(0)));
+    // intakeButton.whenPressed(new RunCommand(frc.robot.commands.Intake);
+    // outtakeButton.whenPressed(outtake::outtake);
+    // armButton.whileHeld(new RunCommand(frc.robot.commands.LiftArm));
+    // armButton.whenPressed(new FooCommand(set(0.2)));
+    // armButton.whenReleased(new FooCommand(set(0)));
 
   }
 
