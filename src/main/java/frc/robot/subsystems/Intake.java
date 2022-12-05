@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 
 public class Intake extends SubsystemBase {
 
-    PWMVictorSPX LeftIntake = new PWMVictorSPX(3);
-    PWMVictorSPX RightIntake = new PWMVictorSPX(3);
+    PWMVictorSPX LeftIntake = new PWMVictorSPX(8);
+    PWMVictorSPX RightIntake = new PWMVictorSPX(9);
 
     // these are not the correct ports; placeholders
     public Intake(){

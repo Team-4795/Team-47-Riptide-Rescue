@@ -7,9 +7,10 @@ import frc.robot.subsystems.Arms;
 public class LiftArm extends CommandBase {
    private final Arms m_arms;
 
-   public LiftArm (Arms subsystem, DoubleSupplier backwards, DoubleSupplier forwards) {
+   public LiftArm (Arms subsystem, double speed) {
        m_arms = subsystem;
        addRequirements(m_arms);
+       double m_speed = speed;
     }
 
     @Override

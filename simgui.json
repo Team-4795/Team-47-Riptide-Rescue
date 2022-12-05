@@ -2,7 +2,9 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Arms": "Subsystem",
       "/LiveWindow/Drivetrain": "Subsystem",
+      "/LiveWindow/Intake": "Subsystem",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/SmartDashboard/SendableChooser[0]": "String Chooser"

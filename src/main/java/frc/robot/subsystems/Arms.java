@@ -6,9 +6,7 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class Arms  extends SubsystemBase {
 
-    PWMVictorSPX LeftArm = new PWMVictorSPX(3);
-    Encoder LeftArmEncoder = new Encoder(7, 5);
-
+    PWMVictorSPX LeftArm = new PWMVictorSPX(7);
     // these are not the correct ports; placeholders
     public Arms(){
     }

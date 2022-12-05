@@ -10,9 +10,10 @@ import frc.robot.subsystems.Arms;
 public class MoveArmBack extends CommandBase {
 private final Arms m_arms;
 
-public MoveArmBack (Arms subsystem) {
+public MoveArmBack (Arms subsystem, double speed) {
   m_arms = subsystem;
   addRequirements(m_arms);
+  double m_speed = speed;
  }
 
   @Override

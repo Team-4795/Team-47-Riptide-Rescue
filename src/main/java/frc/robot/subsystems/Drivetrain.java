@@ -6,18 +6,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
-import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivetrain extends SubsystemBase {
 
   // TO-DO Create two PWMTalonSRX motor controllers
-  PWMVictorSPX left = new PWMVictorSPX(5);
-  PWMVictorSPX right = new PWMVictorSPX(6);
-  Encoder LeftEncoder = new Encoder(4, 5);
-  Encoder RightEncoder = new Encoder(6, 7);
+  PWMTalonSRX left = new PWMTalonSRX(5);
+  PWMTalonSRX right = new PWMTalonSRX(6);
 
   // TO-DO Set up the differential drive controller
   DifferentialDrive diffDrive = new DifferentialDrive(left, right);
