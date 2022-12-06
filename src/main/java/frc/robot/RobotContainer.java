@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and button mappings) should be declared here.
  */
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.Constants;
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
@@ -61,20 +62,15 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
     SmartDashboard.putData(m_chooser);
    
-    final JoystickButton outtakeButton = new JoystickButton(driverController, 5);
-    final JoystickButton armButton = new JoystickButton(driverController, 6);
-    final JoystickButton intakeButton = new JoystickButton(driverController, 7);
-    final JoystickButton armBackButton = new JoystickButton(driverController, 8);
+    final JoystickButton outtakeButton = new JoystickButton(driverController, 0);
+    final JoystickButton armButton = new JoystickButton(driverController, 5);
+    final JoystickButton intakeButton = new JoystickButton(driverController, 1);
+    final JoystickButton armBackButton = new JoystickButton(driverController, 4);
 
     intakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeForward()));
     outtakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeBack()));
     armButton.whileHeld(new RunCommand(() -> arms.moveArm()));
     armBackButton.whileHeld(new RunCommand(() -> arms.moveArmBack()));
-    // outtakeButton.whenPressed(outtake::outtake);
-    // armButton.whileHeld(new RunCommand(frc.robot.commands.LiftArm));
-    // armButton.whenPressed(new FooCommand(set(0.2)));
-    // armButton.whenReleased(new FooCommand(set(0)));
-
   }
 
 
@@ -85,15 +81,15 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return new SequentialCommandGroup(
-      new DriveTime(0.6, 2, m_drivetrain), 
-      new LiftArm(arms, 0.5).withTimeout(1),
+      new DriveTime(Constants.DRIVE_SPEED, 2, m_drivetrain), 
+      new LiftArm(arms, Constants.ARM_SPEED).withTimeout(1),
       new Outake(m_intake).withTimeout(3),
-      new MoveArmBack(arms, 0.5).withTimeout(1));
+      new MoveArmBack(arms, Constants.ARM_SPEED).withTimeout(1));
 
   }
   public Command getArcadeDriveCommand()
   {   return new ArcadeDrive(
-      m_drivetrain, () -> -driverController.getRawAxis(1), () -> driverController.getRawAxis(2));
+      m_drivetrain, () -> -driverController.getRawAxis(1), () -> driverController.getRawAxis(4));
   }
   /**
    * Use this to pass the teleop command to the main {@link Robot} class.

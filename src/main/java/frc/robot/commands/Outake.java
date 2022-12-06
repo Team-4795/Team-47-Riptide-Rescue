@@ -13,12 +13,12 @@ public class Outake extends CommandBase {
   public Outake (Intake subsystem) {
     m_intake = subsystem;
     addRequirements(m_intake);
- }
+  }
 
  @Override
- public void execute() {
-     m_intake.moveIntakeForward();
- }
+  public void execute() {
+    m_intake.moveIntakeForward();
+  }
   /** Creates a new Outake. */
     // Use addRequirements() here to declare subsystem dependencies.
 

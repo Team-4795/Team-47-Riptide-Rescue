@@ -9,12 +9,13 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
 
   // TO-DO Create two PWMTalonSRX motor controllers
-  PWMTalonSRX left = new PWMTalonSRX(5);
-  PWMTalonSRX right = new PWMTalonSRX(6);
+  PWMTalonSRX left = new PWMTalonSRX(Constants.LEFT_MOTOR);
+  PWMTalonSRX right = new PWMTalonSRX(Constants.RIGHT_MOTOR);
 
   // TO-DO Set up the differential drive controller
   DifferentialDrive diffDrive = new DifferentialDrive(left, right);
