@@ -9,15 +9,17 @@ import frc.robot.subsystems.Intake;
 
 public class IntakeBall extends CommandBase {
   private final Intake m_outake;
+  double m_speed;
 
-  public IntakeBall (Intake subsystem) {
+  public IntakeBall (Intake subsystem, double speed) {
     m_outake = subsystem;
     addRequirements(m_outake);
+    m_speed = speed;
  }
 
  @Override
  public void execute() {
-     m_outake.moveIntakeBack();
+     m_outake.moveIntakeBack(m_speed);
  }
   /** Creates a new Outake. */
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,5 +38,7 @@ public class IntakeBall extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+
+    
   }
 }

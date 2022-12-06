@@ -9,15 +9,17 @@ import frc.robot.subsystems.Intake;
 
 public class Outake extends CommandBase {
   private final Intake m_intake;
+  double m_speed;
 
-  public Outake (Intake subsystem) {
+  public Outake (Intake subsystem, double speed) {
     m_intake = subsystem;
     addRequirements(m_intake);
+    m_speed = speed;
   }
 
  @Override
   public void execute() {
-    m_intake.moveIntakeForward();
+    m_intake.moveIntakeForward(m_speed);
   }
   /** Creates a new Outake. */
     // Use addRequirements() here to declare subsystem dependencies.

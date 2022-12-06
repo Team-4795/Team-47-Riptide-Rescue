@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveTime;
+import frc.robot.commands.IntakeBall;
 import frc.robot.commands.LiftArm;
 import frc.robot.commands.Outake;
 import frc.robot.commands.MoveArmBack;
@@ -34,19 +35,22 @@ import frc.robot.Constants;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_drivetrain = new Drivetrain();
+  private final Arms m_arm = new Arms();
+  private final Intake m_intake = new Intake();
   // TO-DO Declare a joystick
   public Joystick driverController = new Joystick(Constants.DRIVER_Controller);
   // Create SmartDashboard chooser for autonomous routines
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
-
-  Arms arms = new Arms();
-  Intake m_intake = new Intake();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
 
     configureButtonBindings();
+
+    m_arm.setDefaultCommand(new LiftArm(m_arm, 0));
+    m_intake.setDefaultCommand(new IntakeBall(m_intake, 0));
+
   
   }
 
@@ -62,15 +66,15 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
     SmartDashboard.putData(m_chooser);
    
-    final JoystickButton outtakeButton = new JoystickButton(driverController, 0);
-    final JoystickButton armButton = new JoystickButton(driverController, 5);
-    final JoystickButton intakeButton = new JoystickButton(driverController, 1);
+    final JoystickButton outtakeButton = new JoystickButton(driverController, 1);
+    final JoystickButton armButton = new JoystickButton(driverController, 3);
+    final JoystickButton intakeButton = new JoystickButton(driverController, 2);
     final JoystickButton armBackButton = new JoystickButton(driverController, 4);
 
-    intakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeForward()));
-    outtakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeBack()));
-    armButton.whileHeld(new RunCommand(() -> arms.moveArm()));
-    armBackButton.whileHeld(new RunCommand(() -> arms.moveArmBack()));
+    intakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeForward(0.4)));
+    outtakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeBack(-0.4)));
+    armButton.whileHeld(new RunCommand(() -> m_arm.moveArm(0.6)));
+    armBackButton.whileHeld(new MoveArmBack(m_arm, .6));
   }
 
 
@@ -82,14 +86,14 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return new SequentialCommandGroup(
       new DriveTime(Constants.DRIVE_SPEED, 2, m_drivetrain), 
-      new LiftArm(arms, Constants.ARM_SPEED).withTimeout(1),
-      new Outake(m_intake).withTimeout(3),
-      new MoveArmBack(arms, Constants.ARM_SPEED).withTimeout(1));
+      new LiftArm(m_arm, Constants.ARM_SPEED).withTimeout(1),
+      new Outake(m_intake,0.1).withTimeout(3),
+      new MoveArmBack(m_arm, Constants.ARM_SPEED).withTimeout(1));
 
   }
   public Command getArcadeDriveCommand()
   {   return new ArcadeDrive(
-      m_drivetrain, () -> -driverController.getRawAxis(1), () -> driverController.getRawAxis(4));
+      m_drivetrain, () -> -driverController.getRawAxis(0), () -> driverController.getRawAxis(1));
   }
   /**
    * Use this to pass the teleop command to the main {@link Robot} class.
