@@ -39,7 +39,7 @@ public class RobotContainer {
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   Arms arms = new Arms();
-  Intake wheel = new Intake();
+  Intake m_intake = new Intake();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -64,9 +64,12 @@ public class RobotContainer {
     final JoystickButton outtakeButton = new JoystickButton(driverController, 5);
     final JoystickButton armButton = new JoystickButton(driverController, 6);
     final JoystickButton intakeButton = new JoystickButton(driverController, 7);
+    final JoystickButton armBackButton = new JoystickButton(driverController, 8);
 
-    
-    //intakeButton.whenPressed(new RunCommand(Intake);
+    intakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeForward()));
+    outtakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeBack()));
+    armButton.whileHeld(new RunCommand(() -> arms.moveArm()));
+    armBackButton.whileHeld(new RunCommand(() -> arms.moveArmBack()));
     // outtakeButton.whenPressed(outtake::outtake);
     // armButton.whileHeld(new RunCommand(frc.robot.commands.LiftArm));
     // armButton.whenPressed(new FooCommand(set(0.2)));
@@ -81,10 +84,11 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new SequentialCommandGroup(new DriveTime(0.6, 2, m_drivetrain), 
-    new LiftArm(arms, 0.5).withTimeout(1),
-    new Outake(wheel).withTimeout(3),
-    new MoveArmBack(arms, 0.5).withTimeout(1));
+    return new SequentialCommandGroup(
+      new DriveTime(0.6, 2, m_drivetrain), 
+      new LiftArm(arms, 0.5).withTimeout(1),
+      new Outake(m_intake).withTimeout(3),
+      new MoveArmBack(arms, 0.5).withTimeout(1));
 
   }
   public Command getArcadeDriveCommand()
