@@ -18,7 +18,7 @@ private final Arms m_arms;
 
   @Override
   public void execute() {
-    m_arms.moveArmBack();
+    m_arms.setArmSpeed(-0.6);
   }
 
   // Called when the command is initially scheduled.

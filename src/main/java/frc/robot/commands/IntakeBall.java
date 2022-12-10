@@ -19,7 +19,7 @@ public class IntakeBall extends CommandBase {
 
  @Override
  public void execute() {
-     m_outake.moveIntakeBack(m_speed);
+     m_outake.setIntakeSpeed(m_speed);
  }
   /** Creates a new Outake. */
     // Use addRequirements() here to declare subsystem dependencies.

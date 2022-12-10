@@ -12,13 +12,9 @@ public class Intake extends SubsystemBase {
     public Intake(){
     }
 
-    public void moveIntakeForward(double speed) {
+    public void setIntakeSpeed(double speed) {
         LeftIntake.set(speed);
     }   
-
-    public void moveIntakeBack(double speed) {
-        LeftIntake.set(speed);
-    }
     public void stopIntake() {
         LeftIntake.set(0);
     }

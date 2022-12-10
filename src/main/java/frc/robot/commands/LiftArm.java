@@ -15,7 +15,7 @@ public class LiftArm extends CommandBase {
 
     @Override
     public void execute() {
-        m_arms.moveArm(m_speed);
+        m_arms.setArmSpeed(m_speed);
     }
 
     // Called when the command is initially scheduled.

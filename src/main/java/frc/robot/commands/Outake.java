@@ -19,7 +19,7 @@ public class Outake extends CommandBase {
 
  @Override
   public void execute() {
-    m_intake.moveIntakeForward(m_speed);
+    m_intake.setIntakeSpeed(m_speed);
   }
   /** Creates a new Outake. */
     // Use addRequirements() here to declare subsystem dependencies.

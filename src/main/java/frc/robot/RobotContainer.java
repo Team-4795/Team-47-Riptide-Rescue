@@ -67,14 +67,14 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
    
     final JoystickButton outtakeButton = new JoystickButton(driverController, 1);
-    final JoystickButton armButton = new JoystickButton(driverController, 3);
     final JoystickButton intakeButton = new JoystickButton(driverController, 2);
+    final JoystickButton armButton = new JoystickButton(driverController, 3);
     final JoystickButton armBackButton = new JoystickButton(driverController, 4);
 
-    intakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeForward(0.4)));
-    outtakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeBack(-0.4)));
-    armButton.whileHeld(new RunCommand(() -> m_arm.moveArm(0.6)));
-    armBackButton.whileHeld(new MoveArmBack(m_arm, .6));
+    intakeButton.whileHeld(new RunCommand(() -> m_intake.setIntakeSpeed(Constants.INTAKE_SPEED)));
+    outtakeButton.whileHeld(new RunCommand(() -> m_intake.setIntakeSpeed(-1 * Constants.INTAKE_SPEED)));
+    armButton.whileHeld(new RunCommand(() -> m_arm.setArmSpeed(Constants.ARM_SPEED)));
+    armBackButton.whileHeld(new RunCommand(() -> m_arm.setArmSpeed(-1 * Constants.ARM_SPEED)));
   }
 
 
@@ -85,9 +85,11 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return new SequentialCommandGroup(
+      new LiftArm(m_arm, Constants.ARM_SPEED).withTimeout(1),  
       new DriveTime(Constants.DRIVE_SPEED, 2, m_drivetrain), 
       new LiftArm(m_arm, Constants.ARM_SPEED).withTimeout(1),
       new Outake(m_intake,0.1).withTimeout(3),
+      //new Outake(m_intake, Constants.INTAKE_SPEED).withTimeout(3),
       new MoveArmBack(m_arm, Constants.ARM_SPEED).withTimeout(1));
 
   }
@@ -101,4 +103,3 @@ public class RobotContainer {
    * @return the command to run in teleop
    */
 }
-
