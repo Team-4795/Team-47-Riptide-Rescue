@@ -86,10 +86,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return new SequentialCommandGroup(
-      new DriveTime(Constants.DRIVE_SPEED, 2, m_drivetrain), 
-      new LiftArm(m_arm, Constants.ARM_SPEED).withTimeout(1),
-      new Outake(m_intake,0.1).withTimeout(3),
-      new MoveArmBack(m_arm, Constants.ARM_SPEED).withTimeout(1));
+      new DriveTime(Constants.DRIVE_SPEED, 2, m_drivetrain)); 
+      //new LiftArm(m_arm, Constants.ARM_SPEED).withTimeout(1),
+      //new Outake(m_intake,0.1).withTimeout(3),
+      //new MoveArmBack(m_arm, Constants.ARM_SPEED).withTimeout(1));
 
   }
   public Command getArcadeDriveCommand()
