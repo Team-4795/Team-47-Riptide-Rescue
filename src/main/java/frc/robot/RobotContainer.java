@@ -72,8 +72,8 @@ public class RobotContainer {
     final JoystickButton intakeButton = new JoystickButton(driverController, 2);
     final JoystickButton armBackButton = new JoystickButton(driverController, 4);
 
-    intakeButton.whileHeld(new IntakeBall(m_intake, 0.4));
-    outtakeButton.whileHeld(new Outake(m_intake, -0.4));
+    intakeButton.whileHeld(new IntakeBall(m_intake, .67));
+    outtakeButton.whileHeld(new Outake(m_intake, -.67));
     armButton.whileHeld(new LiftArm(m_arm, 0.3));
     armBackButton.whileHeld(new MoveArmBack(m_arm, .3));
   }
