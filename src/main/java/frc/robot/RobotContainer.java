@@ -37,6 +37,7 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain = new Drivetrain();
   private final Arms m_arm = new Arms();
   private final Intake m_intake = new Intake();
+  
   // TO-DO Declare a joystick
   public Joystick driverController = new Joystick(Constants.DRIVER_Controller);
   // Create SmartDashboard chooser for autonomous routines
@@ -71,10 +72,10 @@ public class RobotContainer {
     final JoystickButton intakeButton = new JoystickButton(driverController, 2);
     final JoystickButton armBackButton = new JoystickButton(driverController, 4);
 
-    intakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeForward(0.4)));
-    outtakeButton.whileHeld(new RunCommand(() -> m_intake.moveIntakeBack(-0.4)));
-    armButton.whileHeld(new RunCommand(() -> m_arm.moveArm(0.6)));
-    armBackButton.whileHeld(new MoveArmBack(m_arm, .6));
+    intakeButton.whileHeld(new IntakeBall(m_intake, 0.4));
+    outtakeButton.whileHeld(new Outake(m_intake, -0.4));
+    armButton.whileHeld(new LiftArm(m_arm, 0.3));
+    armBackButton.whileHeld(new MoveArmBack(m_arm, .3));
   }
 
 

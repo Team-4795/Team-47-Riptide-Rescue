@@ -7,6 +7,7 @@ import frc.robot.Constants;
 public class Arms  extends SubsystemBase {
 
     PWMVictorSPX LeftArm = new PWMVictorSPX(Constants.ARMZ);
+    
     // these are not the correct ports; placeholders
     public Arms(){
         LeftArm.set(0);
